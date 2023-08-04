@@ -137,7 +137,7 @@ breakout room.
 
 ![Posting messages to Slack](images/Module00_slack.png)
 
-  - Slack messages will be posted to the **2023-03-rnaseq-demystified** channel.  
+  - Slack messages will be posted to the **2023-08-rnaseq-demystified-workshop** channel.  
     Click on the channel in the left pane (1) to select this channel.
   - You can type in the **message field** (2); click **send** (3) to
     post your message to everyone.
