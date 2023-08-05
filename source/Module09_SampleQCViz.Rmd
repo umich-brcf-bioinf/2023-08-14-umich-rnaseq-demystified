@@ -38,7 +38,7 @@ In this module, we will learn:
 * How to generate & interpret common QC visualizations
 * When to revise the model used in the DESeq2 initialization
 * Understand the pitfalls of post-hoc analysis
-* Causes and implications of batch effect or QC issues in an RNA-Seq experiment
+* Implications of batch effect or other technical variablity
 
 <br>
 
@@ -80,7 +80,7 @@ This image from
 ![](./images/Blog_pca_6b.png)
 
 
-For more information, this [helpful overview of PCA basics](https://blog.bioturing.com/2018/06/14/principal-component-analysis-explained-simply/) walks through both the generation and interpretation of PCA plots.
+This [blog post includes a helpful overview of PCA basics](https://blog.bioturing.com/2018/06/14/principal-component-analysis-explained-simply/) walks through both the generation and interpretation of PCA plots.
 
 A more detailed overview of the PCA procedure is outlined in [a Harvard Chan Bioinformatic Core training module](https://hbctraining.github.io/DGE_workshop/lessons/principal_component_analysis.html) and is based on a more thorough description presented in a [StatQuest’s video](https://www.youtube.com/watch?v=_UVHneBUBW0). Additionally, this [TowardsDataScience blog post](https://towardsdatascience.com/principal-component-analysis-3c39fbf5cb9d) goes through the math behind PCAs.
 
@@ -89,7 +89,6 @@ A more detailed overview of the PCA procedure is outlined in [a Harvard Chan Bio
 
 For most bulk RNA-seq experiments, we expect the majority of the total variance to be explained by the first two or three principal components. We see this in an example plot from the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html):
 
-<**Consider editing to be a single color per group**>
 ![](./images/PCA0_DESeq2Vignette.png)
 
 > # Question {.unlisted .unnumbered}
@@ -99,15 +98,15 @@ For most bulk RNA-seq experiments, we expect the majority of the total variance 
 
 ## Evaluating batch effects or possible confounders
 
-PCA plots are also useful for evaluating the impact of "uninteresting" sources of variance, like library preparation or sequencer differences. Evidence of batch effects can sometimes be quite obvious. Let's look at the PCA plot from the DESeq2 vigentte again.
+PCA plots are also useful for evaluating the impact of "uninteresting" sources of variance, like library preparation or sequencer differences. Evidence of batch effects can sometimes be quite obvious. Let's look at the PCA plot from the DESeq2 vigentte again but re-colored to highlight structure in the data.
 
-![](./images/PCA0_DESeq2Vignette.png)
+![](./images/PCA1_DESeq2Vignette.png)
 
-It turns out this experiment contained samples sequenced single-end and paired-end. If we color only by sequencing run type (paired-end vs. single-end), we see that in this example PC2 (29% of variance) is primarily explained by this technical covariate.
+It turns out this experiment contained samples sequenced single-end and paired-end. If we add an attribute to the plot for the sequencing type (paired-end vs. single-end), we see that in this example PC2 (29% of variance) is primarily explained by this technical covariate.
 
 ![](./images/PCA2_DESeq2Vignette.png)
 
-However, since the samples are clearly seperated by experimental condition on PC1 **and** there are balanced batches, if we saw this pattern in our data we could incorporate the technical covariate into our model design, such as outlined in the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#multi-factor-designs).
+However, since the samples are clearly separated by experimental condition on PC1 **and** there are balanced batches, if we saw this pattern in our data we could incorporate the technical covariate into our model design, such as outlined in the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#multi-factor-designs).
 
 <details>
     <summary>*Click for complex design discussion*</summary>
