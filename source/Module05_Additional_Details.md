@@ -1,5 +1,5 @@
 ---
-title: "Module 05: Additional Details"
+title: "Additional Details"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -23,9 +23,7 @@ pre {
 }
 </style>
 
-# Additional Information
-
-For this workshop, we've provided a few things to ensure that our experience goes smoothly. In this module, we will discuss in more detail the things needed to perform an RNAseq analysis like this.
+For this workshop, we've provided a few things to ensure that our experience goes smoothly. In this module, we will discuss in more detail each the things needed to perform an RNAseq analysis on your own.
 
 ![Building Blocks](images/building-blocks.png)
 
@@ -245,7 +243,7 @@ conda deactivate
 
 Before starting our conda exercise, we should make sure that we are on the same page. Follow the link below:
 
-[Conda create exercise](Module05_breakout04_sol.html)
+[Conda create exercise](Module05_breakout04_ex.html)
 
 <br>
 <br>

@@ -1,5 +1,5 @@
 ---
-title: "Module 02b: Trimming"
+title: "Trimming"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -23,13 +23,12 @@ pre {
 }
 </style>
 
-# Trimming and More Sequence QC
-
 In this module we will learn:
 
 * about the cutadapt software and its uses
 * how to use the cutadapt tool for trimming adapters
 * how to trim all of our samples using a bash variable
+* how to further use fastqc to evaluate trimming success
 
 # Differential Expression Workflow
 
@@ -93,7 +92,7 @@ At this point, we've run cutadapt on one of our samples. We could construct a se
 
 Before starting our cutadapt exercise, we should make sure that we are on the same page. Follow the link below:
 
-[Link to Cutadapt exercise](Module02b_breakout01_sol.html)
+[Link to Cutadapt exercise](Module02b_breakout01_ex.html)
 
 <br>
 <br>

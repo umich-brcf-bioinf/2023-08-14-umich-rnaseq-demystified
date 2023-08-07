@@ -1,5 +1,5 @@
 ---
-title: "Module 03b: Alignment"
+title: "Alignment"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -22,8 +22,6 @@ pre {
   font-size: 12pt
 }
 </style>
-
-# Alignment
 
 In this module, we will learn:
 
@@ -188,7 +186,7 @@ rsem-calculate-expression --star --num-threads 1 --star-gzipped-read-file --star
 
 Before starting our alignment exercise, we should make sure that we are on the same page. Follow the link below:
 
-[Link to alignment exercise](Module03b_breakout02_sol.html)
+[Link to alignment exercise](Module03b_breakout02_ex.html)
 
 <br>
 <br>

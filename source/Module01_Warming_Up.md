@@ -1,5 +1,5 @@
 ---
-title: "Module 01: Warming up"
+title: "Warming up"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -22,8 +22,6 @@ pre {
   font-size: 12pt
 }
 </style>
-
-# Warming Up
 
 In this module, we will:
 

@@ -1,5 +1,5 @@
 ---
-title: "Module 02a: Sequence QC"
+title: "Sequence QC"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -23,9 +23,7 @@ pre {
 }
 </style>
 
-# Sequence QC and FASTQ Files
-
-In this Quality Control (QC) module, we will learn:
+In this module, we will learn:
 
 * what a FASTQ file is
 * how to use FastQC to assess the quality of sequencing reads

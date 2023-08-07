@@ -1,5 +1,5 @@
 ---
-title: "Module 03a: Reference Genomes"
+title: "Reference Genomes"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -22,8 +22,6 @@ pre {
   font-size: 12pt
 }
 </style>
-
-# Reference Genomes
 
 In this module, we will learn:
 

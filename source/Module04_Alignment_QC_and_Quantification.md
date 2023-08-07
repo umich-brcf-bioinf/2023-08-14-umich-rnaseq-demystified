@@ -1,5 +1,5 @@
 ---
-title: "Module 04: Alignment QC and Quantification"
+title: "Alignment QC and Quantification"
 author: "UM Bioinformatics Core"
 output:
         html_document:
@@ -22,8 +22,6 @@ pre {
   font-size: 12pt
 }
 </style>
-
-# Alignment QC, MultiQC, and Count Matrix
 
 In this module, we will learn:
 
@@ -154,7 +152,7 @@ multiqc --outdir out_multiqc_all  .
 
 Before starting our file transfer exercise, we should make sure that we are on the same page. Follow the link below:
 
-[Link to report transfer exercise](Module04_breakout03_sol.html)
+[Link to report transfer exercise](Module04_breakout03_ex.html)
 
 
 <br>
