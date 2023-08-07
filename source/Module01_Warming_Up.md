@@ -147,8 +147,24 @@ Note: It is also possible to directly use `fastq-dump` without first using `pref
 <br>
 <br>
 <br>
-<img src="images/building-blocks-checkmark.png" width="800" />
 <br>
+Sneak Preview
+<br>
+<br>
+<br>
+<img src="images/combined_mqc.png" width="800" />
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<img src="images/building-blocks-checkmark.png" width="800" />
 <br>
 <br>
 <br>
