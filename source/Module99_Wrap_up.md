@@ -46,7 +46,7 @@ connect to enable gene expression analysis from bulk RNA-Seq data.
 
 - Please take our optional <a class="external" href="https://forms.gle/ukp1Z4sxcjuER5dP6" target="_blank">post-workshop survey</a> (5-10 minutes)
 
-- 3/17 11-12 ET: <a class="external" href="https://forms.gle/LVWk5WdzcetaaXQJ6" target="_blank">Virtual office hours</a>
+- 8/18 11-12 ET: <a class="external" href="https://forms.gle/BQn58rUUwPTzaivy7" target="_blank">Virtual office hours</a>
 
 - We will email you a link to the final session recordings by next week.
 
@@ -60,7 +60,7 @@ for 90 days.
 ## Looking ahead
 
 #### Workshop environment
-- BASH/RStudio workshop compute environment will be available until 3/31.
+- BASH/RStudio workshop compute environment will be available until 8/31.
   - _Please save all your R scripts now_ so that we can "right-size" the compute environment immediately following today's workshop session.
 - You can download files from the workshop environment from your terminal/command line window as below. 
   (You will need to substitute your actual workshop username and type workshop password when prompted.)
@@ -82,7 +82,7 @@ for 90 days.
     (We are considering offering a Computational Reproducibility workshop that
     would cover this.) For the intrepid, see relevant links below:
     - [Installing Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation)
-    - [Conda environment YAML](https://github.com/umich-brcf-bioinf/2022-03-14-umich-rnaseq-demystified/blob/main/server_setup/conda_setup/workshop-rsd.yaml)
+    - [Conda environment YAML](https://github.com/umich-brcf-bioinf/2022-08-14-umich-rnaseq-demystified/blob/main/server_setup/conda_setup/workshop-rsd.yaml)
     - [Setting up R/R-Studio](workshop_setup/setup_instructions_advanced.html)
 
 
@@ -104,7 +104,7 @@ for 90 days.
   - Learning bioinformatic analyses more like a process than a task. Resources 
     to consider:
     - UM Bioinformatics Core links to <a href="https://brcf.medicine.umich.edu/cores/bioinformatics-core/training/" target="_blank">training resources/workshops</a>
-    - Notes on Bash and R from the recent <a href="https://umich-brcf-bioinf.github.io/2022-10-31-umich-computational-foundations/html/" target="_blank">Computational Foundations Workshop</a>.<br/>
+    - Notes on Bash and R from the recent <a href="https://umich-brcf-bioinf.github.io/2023-07-31-umich-computational-foundations/html/" target="_blank">Computational Foundations Workshop</a>.<br/>
     - For more intro lessons and workshops in Bash / Git / R / Python : <a href="https://software-carpentry.org/lessons/" target="_blank">Software Carpentry</a> and the <a href="https://umcarpentries.org/" target="_blank">UM Software Carpentry Group</a>.
     - For more info on NGS analysis, we can highly recommend training materials from the <a href="https://hbctraining.github.io/main/" target="_blank">Harvard Chan Bioinformatics Core</a>.
 
