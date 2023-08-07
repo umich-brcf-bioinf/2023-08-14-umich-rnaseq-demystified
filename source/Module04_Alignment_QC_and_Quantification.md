@@ -204,3 +204,9 @@ less -S combined_counts.txt
 ---
 
 These materials have been adapted and extended from materials created by the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+
+<br/>
+<br/>
+<hr/>
+| [Previous lesson](Module03b_Alignment.html) | [Top of this lesson](#top) | [Next lesson](Module05_Additional_Details.html) |
+| :--- | :----: | ---: |

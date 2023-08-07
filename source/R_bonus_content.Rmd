@@ -198,3 +198,9 @@ sessionInfo()
 ---
 
 These materials have been adapted and extended from materials listed above. These are open access materials distributed under the terms of the [Creative Commons Attribution license (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+
+<br/>
+<br/>
+<hr/>
+| [Previous lesson](Module12_DEAnnotations.Rmd.html) | [Top of this lesson](#top) | [To wrap-up](Module99_Wrap_up.html) |
+| :--- | :----: | ---: |

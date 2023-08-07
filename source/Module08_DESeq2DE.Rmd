@@ -207,3 +207,9 @@ Training resources used to develop materials
 ---
 
 These materials have been adapted and extended from materials listed above. These are open access materials distributed under the terms of the [Creative Commons Attribution license (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+
+<br/>
+<br/>
+<hr/>
+| [Previous lesson](Module07_DESeq2Init.html) | [Top of this lesson](#top) | [Next lesson](Module09_SampleQCViz.html) |
+| :--- | :----: | ---: |
