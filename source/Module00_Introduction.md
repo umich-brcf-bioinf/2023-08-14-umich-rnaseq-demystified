@@ -49,9 +49,13 @@ pre {
 
 
 ## About the workshop team
-| ![](images/Module00_headshots/headshot_cgates.jpg) | ![](images/Module00_headshots/headshot_mbradenb.jpg) | ![](images/Module00_headshots/headshot_trsaari.jpg) | ![](images/Module00_headshots/headshot_damki.jpg) |
+| ![](images/Module00_headshots/headshot_cgates.jpg) | ![](images/Module00_headshots/headshot_mbradenb.jpg) | ![](images/Module00_headshots/headshot_trsaari.jpg) |
 |:-:|:-:|:-:|:-:|
-| **Chris** | **Marci** | **Travis** | **Dana** |
+| **Chris** | **Marci** | **Travis** |
+![](images/Module00_headshots/headshot_damki.jpg) | ![](images/Module00_headshots/headshot_rcavalca.jpg) | ![](images/Module00_headshots/headshot_mkdohert.jpg) |
+| **Dana** | **Raymond** | **Matt** |
+
+<br/>
 
 <br/>
 
