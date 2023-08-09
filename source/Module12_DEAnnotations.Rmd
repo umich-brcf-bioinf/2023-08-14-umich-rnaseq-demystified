@@ -1,5 +1,5 @@
 ---
-title: "Module 12: DE Annotations & Downsteam applications"
+title: "DE Annotations & Downsteam applications"
 author: "UM Bioinformatics Core"
 date: "`r Sys.Date()`"
 output:
@@ -33,12 +33,13 @@ source("../bin/chunk-options.R")
 knitr_fig_path("11-")
 ```
 
-> # Objectives {.unlisted .unnumbered}
-> * Understand advantages of using gene ids when analyzing RNA-seq data.
-> * Given a list of ENSEMBL gene ids, add gene symbols and Entrez accessions.
-> * Generate common visualizations for differential expression comparisons
-> * Understand choosing thresholds for calling differentially expressed genes
-> * Discuss options for functional enrichments
+In this module, we will learn:
+
+* The advantages of using gene ids when analyzing RNA-seq data.
+* How to add gene symbols and other annotations, using ENSEMBL gene ids
+* Discuss options for functional enrichments and other follow-ups
+
+<br>
 
 ```{r Modules, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 library(DESeq2)
@@ -101,28 +102,28 @@ Now that we have the ENSEMBL information and a gene symbol to match to our resul
 
 **Note**: For additional information regarding bioMart, please consult the [ENSEMBL bioMart vignette](https://bioconductor.org/packages/release/bioc/vignettes/biomaRt/inst/doc/accessing_ensembl.html) or the broader [Bioconductor Annotation Resources vignette ](http://bioconductor.org/packages/devel/workflows/vignettes/annotation/inst/doc/Annotation_Resources.html).
 
-Look at the two data frames that are going to be needed: `id_mapping` and `results_minus_vs_plus`.
+Look at the two data frames that are going to be needed: `id_mapping` and `results_deficient_vs_control`.
 
 ```{r preview_tables}
 head(id_mapping)
-head(results_minus_vs_plus)
+head(results_deficient_vs_control)
 ```
 
-We want to match the `id` column of `results_minus_vs_plus` to the `ensembl_gene_id` column of `id_mapping`, and once that match is found, we want to extract the `external_gene_name` column of `id_mapping` to get the gene symbol. Next, look at the documentation for `dplyr::left_join()` and merge the `id_mapping` table into the `results_minus_vs_plus` table on the columns `ensembl_gene_id` and `external_gene_name`.
+We want to match the `id` column of `results_deficient_vs_control` to the `ensembl_gene_id` column of `id_mapping`, and once that match is found, we want to extract the `external_gene_name` column of `id_mapping` to get the gene symbol. Next, look at the documentation for `dplyr::left_join()` and merge the `id_mapping` table into the `results_deficient_vs_control` table on the columns `ensembl_gene_id` and `external_gene_name`.
 
 ```{r left_join}
-results_minus_vs_plus_annotated = as_tibble(results_minus_vs_plus, rownames = "id") %>%
+results_deficient_vs_control_annotated = as_tibble(results_deficient_vs_control, rownames = "id") %>%
     left_join(id_mapping, by = c('id' = 'ensembl_gene_id'))
-head(results_minus_vs_plus_annotated)
+head(results_deficient_vs_control_annotated)
 ```
 
 We can use some of the `tidyverse` functions we've encountered previously to rename the `external_gene_name` column to `symbol` and to move it into the second column position? Hint: Because of the order of the packages we may have loaded, we'll use `dplyr::rename()` and `dplyr::select()` instead of just the `select()` function. We can discuss this in a moment.
 
 ```{r rename_rearrange}
-results_minus_vs_plus_annotated = results_minus_vs_plus_annotated %>%
+results_deficient_vs_control_annotated = results_deficient_vs_control_annotated %>%
     dplyr::rename('symbol' = 'external_gene_name') %>%
     dplyr::select(id, symbol, everything())
-results_minus_vs_plus_annotated
+results_deficient_vs_control_annotated
 ```
 
 And now we have our differential expression results annotated with gene symbols, which can help in the interpretation of the results, and can be used in downstream analysis such as functional analysis.
@@ -136,10 +137,10 @@ A key aspect of our analysis is preserving the relevant datasets for both our re
 We'll write out our DE results, now that we've added information to the table to help us or our collaborators interpret the results.
 
 ```{r DEResultsOuput, eval = FALSE}
-write.csv(results_minus_vs_plus,
+write.csv(results_deficient_vs_control,
           row.names = FALSE,
           na = ".",
-          file="outputs/tables/DE_results_minus_vs_plus.csv")
+          file="outputs/tables/DE_results_deficient_vs_control.csv")
 ```
 
 
@@ -157,16 +158,6 @@ session_summary <- sessionInfo()
 save.image(file = "outputs/Robjs/DE_iron.RData")
 ```
 
-
-# Summary
-
-In this section, we:
-
-* Generated a volcano plot for our differential expression results
-* Summarized our differential expression results
-* Discussed choosing thresholds
-* Annotated our tables of results to map gene IDs to gene symbols
-* Saved our results to file
 
 
 # Overall takeaways
