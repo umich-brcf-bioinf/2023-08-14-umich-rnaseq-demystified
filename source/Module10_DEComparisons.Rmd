@@ -104,8 +104,8 @@ resultsNames(dds_fitted)
 There is only the one comparison in the results, so we will refer to it in the `name` parameter of the `results()` function, and assign the result as an object.
 
 ```{r SetsResult}
-results_deficient_vs_standard = results(dds_fitted, name = 'condition_deficient_vs_standard')
-head(results_deficient_vs_standard)
+results_deficient_vs_control = results(dds_fitted, name = 'condition_deficient_vs_control')
+head(results_deficient_vs_control)
 ```
 
 If we look at the results table, we see that the row names are gene identifiers (in this case ENSEMBL IDs because that's what the GTF we used in the call to RSEM+STAR) and then we see the following columns:

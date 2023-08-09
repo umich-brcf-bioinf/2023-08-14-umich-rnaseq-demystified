@@ -194,11 +194,11 @@ To begin we'll read in a **raw** count data file, `gene_expected_count.txt` whic
 
 ```{r DataTable, eval=TRUE, echo=FALSE}
 ## need to include paths relative to site build locations but keep code block hidden
-count_table = read.table("../data/gene_expected_count.txt", header = TRUE, row.names = 1)
+count_table = read.table("../data/R_data/gene_expected_count.txt", header = TRUE, row.names = 1)
 ```
 
 ```{r DataTable2, eval=FALSE}
-count_table = read.table("data/gene_expected_count.txt", header = TRUE, row.names = 1)
+count_table = read.table("data/R_data/gene_expected_count.txt", header = TRUE, row.names = 1)
 ```
 
 ```{r DataTableCheck, eval=TRUE}

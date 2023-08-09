@@ -102,7 +102,7 @@ fc <- 1.5
 pval <- 0.05
 
 # select data of interest
-df<- res_WT[order(res_WT$padj),]
+df<- res_Iron[order(res_Iron$padj),]
 df <- as.data.frame(df)
 df <- cbind("id" = row.names(df), df)
 str(df)

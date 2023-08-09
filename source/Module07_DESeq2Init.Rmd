@@ -79,7 +79,7 @@ Typically sample phenotype data, including experimental conditions, are stored a
 We'll load our 'pre-made' sample information sheet, `samplesheet.csv`, to unblind our samples.
 
 ```{r Samplesheet, echo = FALSE, eval = TRUE}
-samplesheet = read.table("../data/samplesheet.csv",
+samplesheet = read.table("../data/R_data/samplesheet.csv",
                        sep = ",",
                        header = TRUE,
                        row.names = 1)
