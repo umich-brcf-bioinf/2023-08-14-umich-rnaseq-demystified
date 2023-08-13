@@ -51,6 +51,8 @@ library(ggrepel)
 library(pheatmap)
 library(RColorBrewer)
 # load("rdata/RunningData.RData")
+
+## ensembl SSL cert issue flagged in knitting with selected mirror
 ```
 
 # Differential Expression Workflow {.unlisted .unnumbered}
@@ -73,7 +75,7 @@ We'll start by loading the `biomaRt` library and calling the `useEnsembl()` func
 
 ```{r Pullmart, warning=FALSE}
 library('biomaRt')
-ensembl = useEnsembl(dataset = 'mmusculus_gene_ensembl', biomart='ensembl')
+ensembl = useEnsembl(dataset = 'mmusculus_gene_ensembl', biomart='ensembl', mirror = "useast")
 ```
 
 **Note** *- this process takes some time and will take up a larger amount of working memory so proceed with caution if you try to run these commands on a laptop with less than 4G of memory*
@@ -92,7 +94,7 @@ id_mapping = getBM(attributes=c('ensembl_gene_id', 'external_gene_name'),
       filters = 'ensembl_gene_id',
       values = row.names(assay(dds_fitted)),
       mart = ensembl)
-# will take some time to run
+# will take some time for query
 
 # Preview the result
 head(id_mapping)

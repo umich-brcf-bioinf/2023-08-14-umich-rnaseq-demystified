@@ -171,13 +171,12 @@ results_forPlot = as_tibble(results_deficient_vs_control, rownames = 'id') %>% a
 Let's start with a very simple volcano plot that plots the `log2FoldChange` on the x-axis, and `-log10(padj)` on the y-axis.
 
 ```{r VolcanoPlot}
-# Initialize the plot, saving as object 'p' and specifying the plot type as 'geom_point'
-p = ggplot(results_forPlot, aes(x = log2FoldChange, y = -log10(padj))) +
-    geom_point()
-p
+# Initialize the plot, specifying the plot type as 'geom_point'
+ggplot(results_forPlot, aes(x = log2FoldChange, y = -log10(padj))) +
+  geom_point()
 ```
 
-This is a good start, but, as usual it's good practice to add better labels to the plot with the `labs()` function:
+This is a good start, but it's good practice to add better labels to the plot with the `labs()` function and save the plot as object `p`:
 
 ```{r VolcanoPlot2}
 # Add plot labels and change the theme
