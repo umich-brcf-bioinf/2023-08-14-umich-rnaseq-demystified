@@ -176,10 +176,10 @@ ggplot(results_forPlot, aes(x = log2FoldChange, y = -log10(padj))) +
   geom_point()
 ```
 
-This is a good start, but it's good practice to add better labels to the plot with the `labs()` function and save the plot as object `p`:
+This is a good start, but it's good practice to add better labels to the plot with the `labs()` function:
 
 ```{r VolcanoPlot2}
-# Add plot labels and change the theme
+# Add plot labels and change the theme - save the plot as object `p`
 p = ggplot(results_forPlot, aes(x = log2FoldChange, y = -log10(padj))) +
     geom_point() +
     theme_bw() +

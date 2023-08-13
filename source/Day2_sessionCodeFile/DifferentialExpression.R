@@ -18,6 +18,9 @@ library('RColorBrewer', character.only=TRUE)
 
 # load raw count table
 ?read.table
+# download files
+#download.file("https://raw.githubusercontent.com/umich-brcf-bioinf/2021-04-26-umich-rnaseqDemystified/master/data/Day2Data/samplesheet.csv", "./data/samplesheet.csv")
+
 count_table <- read.table("../data/gene_expected_count.txt", header = TRUE, row.names = 1)
 head(count_table)
 tail(count_table)

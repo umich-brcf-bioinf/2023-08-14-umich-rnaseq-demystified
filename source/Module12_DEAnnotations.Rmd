@@ -1,5 +1,5 @@
 ---
-title: "DE Annotations & Downsteam applications"
+title: "DE Annotations & Downstream applications"
 author: "UM Bioinformatics Core"
 date: "`r Sys.Date()`"
 output:
@@ -143,6 +143,10 @@ write.csv(results_deficient_vs_control,
           row.names = FALSE,
           na = ".",
           file="outputs/tables/DE_results_deficient_vs_control.csv")
+
+write.csv(results_deficient_vs_control_annotated,
+          row.names = FALSE,
+          file="outputs/tables/DE_results_deficient_vs_control_annotated.csv")
 ```
 
 
