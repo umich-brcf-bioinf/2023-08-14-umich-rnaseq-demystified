@@ -11,7 +11,7 @@
 
 <meta name="author" content="UM Bioinformatics Core" />
 
-<meta name="date" content="2023-08-09" />
+<meta name="date" content="2023-08-13" />
 
 <title>Sample Quality Control</title>
 
@@ -461,7 +461,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Sample Quality Control</h1>
 <h4 class="author">UM Bioinformatics Core</h4>
-<h4 class="date">2023-08-09</h4>
+<h4 class="date">2023-08-13</h4>
 
 </div>
 
@@ -639,13 +639,20 @@ percent variance of each component</p>
 percentVar &lt;- round(100 * attr(pcaData, &quot;percentVar&quot;)) # store PC axes (% variance)
 
 head(pcaData) # see the data</code></pre>
-<pre><code>                PC1       PC2     group condition     name
-sample_A  -5.842793 -9.228278   control   control sample_A
-sample_B   6.184870 -2.568785   control   control sample_B
-sample_C   5.317918 -2.683508   control   control sample_C
-sample_D -18.170356  5.027729 deficient deficient sample_D
-sample_E   5.116193  1.010066 deficient deficient sample_E
-sample_F   7.394167  8.442776 deficient deficient sample_F</code></pre>
+<pre><code>                PC1       PC2     group condition
+sample_A  -5.842793 -9.228278   control   control
+sample_B   6.184870 -2.568785   control   control
+sample_C   5.317918 -2.683508   control   control
+sample_D -18.170356  5.027729 deficient deficient
+sample_E   5.116193  1.010066 deficient deficient
+sample_F   7.394167  8.442776 deficient deficient
+             name
+sample_A sample_A
+sample_B sample_B
+sample_C sample_C
+sample_D sample_D
+sample_E sample_E
+sample_F sample_F</code></pre>
 <pre class="r"><code>str(pcaData) # check the structure</code></pre>
 <pre><code>&#39;data.frame&#39;:   6 obs. of  5 variables:
  $ PC1      : num  -5.84 6.18 5.32 -18.17 5.12 ...

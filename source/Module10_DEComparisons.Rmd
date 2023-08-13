@@ -111,7 +111,7 @@ head(results_deficient_vs_control)
 If we look at the results table, we see that the row names are gene identifiers (in this case ENSEMBL IDs because that's what the GTF we used in the call to RSEM+STAR) and then we see the following columns:
 
 1. `baseMean` is the average of the normalized count values, divided by size factors and taken over all samples, and can be interpreted as the relative expression level of that gene across all samples.
-2. `log2FoldChange` is the log2 transformed ratio of the expression of the numerator group (first group) over the denominator group (second group after "vs"). Note that in our comparison, the `log2FoldChange` column compares the expression of `deficient` over the denominator group, `standard`. If the value is positive, that means the expression of that gene is greater across the `deficient` samples than across the `standard` samples. If the value is negative, that means the expression of that gene is greater across the `deficient` samples.
+2. `log2FoldChange` is the log2 transformed ratio of the expression of the numerator group (first group) over the denominator group (second group after "vs"). Note that in our comparison, the `log2FoldChange` column compares the expression of `deficient` over the denominator group, `control`. If the value is positive, that means the expression of that gene is greater across the `deficient` samples than across the `control` samples. If the value is negative, that means the expression of that gene is greater across the `deficient` samples.
 3. `lfcSE` is the standard error for the log2 fold change estimate.
 
 > # Note: `results()` defaults {.unlisted .unnumbered}
@@ -121,11 +121,11 @@ There are multiple ways to specify the test to be done using the `results()` fun
 
 > `contrast`: a character vector with exactly three elements: the name of a factor in the design formula, the name of the numerator level for the fold change, and the name of the denominator level for the fold change
 
-So an alternative way to test the same contrast as above (i.e. `standard` / `deficient`) is:
+So an alternative way to test the same contrast as above (i.e.  `deficient` / `control`) is:
 
 ```{r SetsResultsAlt}
-alt_results_deficient_vs_standard = results(dds_fitted, contrast = c('condition', 'deficient', 'standard'))
-head(alt_results_deficient_vs_standard)
+alt_results_deficient_vs_control = results(dds_fitted, contrast = c('condition', 'deficient', 'control'))
+head(alt_results_deficient_vs_control)
 ```
 
 This way of calling `results()` is especially helpful when the levels of the column of interest contain more than two levels because you can specify exactly which levels to test with little confusion.
