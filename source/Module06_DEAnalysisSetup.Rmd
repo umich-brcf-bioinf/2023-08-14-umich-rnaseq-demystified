@@ -73,7 +73,7 @@ There should now be four panes in your RStudio window, with the `WelcomeToRSD` s
 
 <img src="images/WelcomeScriptOpened.png" alt="rstudio default session" style="width:1000px;"/>
 
-In the Scripts pane, there is a line of icons, towards the right side of the pane there is a "Run" button. First highlight all the code in the Source pane, and then click "Run".
+In the Scripts pane, there is a line of icons, towards the right side of the pane there is a <kbd>Run</kbd> button. First highlight all the code in the Source pane, and then click <kbd>Run</kbd>.
 
 <br>
 
@@ -87,9 +87,12 @@ What just happened?
 
 1. We see that the Plot tab now has a volcano plot displayed - Note: if the plot is not displayed, you may need to expand the right panel boundary before re-running the last line of the script
 
-*What does this volcano plot show?*
+**What does this volcano plot show?**
 
-**Now that we have an idea of what we are working towards, any questions?**
+*Now that we have an idea of what we are working towards, any questions?*
+
+<br>
+<br>
 
 ## Create an RStudio Project
 
@@ -238,9 +241,6 @@ How many genes were included in our reference? We can get a sense of the size of
 str(count_table) # look at the size & structure of the table
 ```
 
-
-
-<--- edit to be discussion of overall depth--->
 
 One important consideration for RNA-seq data is how many genes we measured in our data and how well we measured them. Both are impacted by sequencing depth or the number of reads generated per sample.
 
