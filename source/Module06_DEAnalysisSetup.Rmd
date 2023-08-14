@@ -250,7 +250,7 @@ Generally, for human and mouse experiments the recommendation is 30-40 million r
 
 <br>
 
-How many reads were generated per sample? We can use the `summarize_all` function from dplyr to determine the number of reads or "depth" per sample.
+How many reads were generated per sample in our data? We can use the `summarize_all` function from the dplyr package to determine the number of reads or "depth" per sample.
 
 ```{r SummarizeReads, eval=TRUE}
 count_table %>% summarize_all(funs(sum))
@@ -260,7 +260,7 @@ count_table %>% summarize_all(funs(sum))
 
 How did we know to use the `summarize_all` function to sum each column?
 
-R and RStudio have a strong community component so, as mentioned in Computational Foundations, if you are getting an error or wondering how to make a command work or how to perform a specific task, there is likely already a solution out there. Remember that search engines are your friend. 
+R and RStudio have a strong community component so, as mentioned in Computational Foundations, if you are getting an error or wondering how to make a command work or how to perform a specific task, there is likely already a solution out there. Search engines are your friend, which is exactly how we found [that approach](https://stackoverflow.com/questions/28873057/sum-across-multiple-columns-with-dplyr)
 
 It can sometimes be a challenge to figure out *what to search for*, so some key parts of a successful search are:
 
