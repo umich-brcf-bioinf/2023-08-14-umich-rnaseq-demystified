@@ -71,11 +71,11 @@ To refresh ourselves on the interface of RStudio, look in the lower right pane, 
 
 There should now be four panes in your RStudio window, with the `WelcomeToRSD` script in the upper left pane, this is the "Source" or "Scripts" pane. It displays the code that we will write to perform our analysis.
 
-<!-- Insert screenshot with welcome.R in script pane. -->
+<img src="images/WelcomeScriptOpened.png" alt="rstudio default session" style="width:1000px;"/>
 
 In the Scripts pane, there is a line of icons, towards the right side of the pane there is a "Run" button. First highlight all the code in the Source pane, and then click "Run".
 
-<!-- Insert screenshot of the result of running welcome script -->
+<br>
 
 **Checkpoint**
 
@@ -119,7 +119,7 @@ The new script **diffex.R** is now in the `scripts` folder. You can see that by 
 
 ## File organization & reproducible research
 
-Part of any successful bioinformatics analysis is documentation and data stewardship, which are important aspects of "reproducible research" [Nobel, 2009](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424).
+Part of any successful bioinformatics analysis is documentation and data stewardship, which are important aspects of "reproducible research" (see: [Nobel, 2009](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)).
 
 To follow best practices for file organization for reproducible research, we should make distinct locations for:
 
@@ -159,7 +159,7 @@ While there are several tools that can be used for differential expression compa
 
 DESeq2 is one of two tools, along with [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html), considered ['best practice'](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91) for differential expression comparisons. Both tools apply similar methods that account for the "shape" of data expected for RNA-seq and are fairly stringent in calling differentially expressed genes, lowering the risk of investigating "false positive" genes (e.g. genes that don't actually have different expression between treatment groups and therefore are not relevant to the biological process).
 
-Additionally, DESeq2 also has an excellent vignette [(link)](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+Additionally, DESeq2 also has an [excellent vignette](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
 from Love, Anders, and Huber, from which our workflow is partially adapted, and is a good resource when analyzing your own data
 (see also: [Love, Anders, and Huber. _Genome Biology_. 2014.](https://doi.org/10.1186/s13059-014-0550-8)).
 
@@ -233,26 +233,36 @@ head(count_table, n=2) # look at the top of the table
 
 Now that the file is read into R, note that we've created a data frame that includes 'gene ids' in ENSEMBL format as rownames and count data from twelve different samples.
 
-> # Exercise: RSEM outputs versus DESeq2 input requirements {.unlisted .unnumbered}
->
-> If we think back to the RSEM outputs, the 'expected_counts' table may include fractional amounts due to how the alignment tool resolves reads mapping to multiple locuses). DESeq2 is expecting the count matrix to consist only of whole numbers. Recent versions of DESeq2 will handle this for us, but previous versions did not.
->
-> What R function, that we saw in Computational Foundations, could we use to convert the fractional values in `count_table` to integers?
-
-<details>
-<summary>Solution</summary>
-
-We can use the `round()` function:
-
-```{r round count_table}
-counts_rounded = round(count_table)
+How many genes were included in our reference? We can get a sense of the size of our data with the `str` function.
+```{r DataTableCheck2, eval=TRUE}
+str(count_table) # look at the size & structure of the table
 ```
-</details>
+
+
+
+<--- edit to be discussion of overall depth--->
+
+One important consideration for RNA-seq data is how many genes we measured in our data and how well we measured them. Both are impacted by sequencing depth or the number of reads generated per sample.
+
+Generally, for human and mouse experiments the recommendation is 30-40 million reads per sample to capture both highly expressed (abundant) and lowly expressed (rarer) transcripts in the sample, assuming ~25,000 protein-coding genes would be expected for a polyA (mRNA targeting) library prep. However, as the image from Illumina below shows, sequencing depth has less of an impact than number of replicates in detecting differentially expressed genes (DEGs).
+
+![Illumina's differential expression recovery across replicate number and sequencing depth](images/de_replicates_img.png){width=50%}
+
 <br>
+
+How many reads were generated per sample? We can use the `summarize_all` function from dplyr to determine the number of reads or "depth" per sample.
+
+```{r SummarizeReads, eval=TRUE}
+count_table %>% summarize_all(funs(sum))
+```
 
 # Getting help
 
-R and RStudio have a strong community component so if you are getting an error or wondering how to make a command work or how to perform a specific task, there is likely already a solution out there. Remember that Google is your friend, although it can sometimes be a challenge to figure out *what to search for*. Key parts of a successful search:
+How did we know to use the `summarize_all` function to sum each column?
+
+R and RStudio have a strong community component so, as mentioned in Computational Foundations, if you are getting an error or wondering how to make a command work or how to perform a specific task, there is likely already a solution out there. Remember that search engines are your friend. 
+
+It can sometimes be a challenge to figure out *what to search for*, so some key parts of a successful search are:
 
 * Package or command run
 * `R` or `Bioconductor`
