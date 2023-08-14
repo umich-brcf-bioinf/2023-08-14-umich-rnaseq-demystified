@@ -95,7 +95,7 @@ fdr = 0.05
 If we think back to Computational Foundations, conditional statements could allow us to determine the number of genes that pass our thresholds, which would be useful for annotating our results tables and plots.
 
 > # Exercise {.unlisted .unnumbered}
-> How would we identify the number of genes with adjusted p-values < 0.05 and a fold-change above 1.5 (or below -1.5)?
+> How would we identify the number of genes with adjusted p-values < 0.05 and a fold-change above 1.5 (or below -1.5) in our comparison?
 
 
 <details>
@@ -196,21 +196,27 @@ What if we now added some visual guides to indicate where the significant genes 
 
 ```{r VolcanoPlot3}
 # Add threshold lines
-p = p +
+p1 = p +
     geom_vline(
         xintercept = c(0, -log2(fc), log2(fc)),
         linetype = c(1, 2, 2)) +
     geom_hline(
         yintercept = -log10(fdr),
         linetype = 2)
-p
+p1
 ```
 
 Finally, why not color the points by their significance status? We already created the `call` column that has the correct values. In this case we can get away with adding `geom_point()` to our existing plot and specifying the correct aesthetic:
 
 ```{r VolcanoPlot4}
-p = p + geom_point(aes(color = call))
-p
+p2 = p1 + geom_point(aes(color = call))
+p2
+```
+
+Finally, we can adjust our plot to have a nicer color scheme:
+```{r}
+p3 = p2 + scale_color_manual(name = '', values=c('#B31B21',  '#1465AC', 'darkgray'))
+p3
 ```
 
 For additional visualizations for our DE results, we included some example code in the [Bonus Content module](https://umich-brcf-bioinf.github.io/2023-03-13-umich-rnaseq-demystified/html/R_bonus_content.html) and this [HBC tutorial](https://hbctraining.github.io/DGE_workshop/lessons/06_DGE_visualizing_results.html) also includes some nice examples.
