@@ -66,10 +66,10 @@ As introduced at the beginning of the workshop, we have downloaded and prepared 
 Our next step will be to describe the samples within our R session, so that we make the proper comparisons with DESeq2. Let's check the sample names from the count table.
 
 ```{r ColumnNames}
-colnames(counts_rounded)
+colnames(count_table)
 ```
 
-Based on the sample names that are the columns of `counts_rounded`, our samples are blinded, e.g. the sample names don't clearly correspond to treatment groups. We will need to specify which sample IDs connect to which experimental conditions.
+Based on the sample names that are the columns of `count_table`, our samples are blinded, e.g. the sample names don't clearly correspond to treatment groups. We will need to specify which sample IDs connect to which experimental conditions.
 
 Typically sample phenotype data, including experimental conditions, are stored as Excel or CSV files that we can read into R, and then use when creating a DESeq2 object. If you are unfamilar with CSV files or how to generate them, there are [tutorials](https://www.wikihow.com/Create-a-CSV-File) available to guide you through the process.
 

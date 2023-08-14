@@ -324,8 +324,7 @@ pcaLoadings = prcomp(t(assay(rld)), scale. = TRUE)
 ## get the scree information
 pca.var = pcaLoadings$sdev^2
 scree = pca.var/sum(pca.var)
-p = barplot((scree[1:10]*100), main="Scree Plot", xlab="Principal Component", ylab="Percent Variation")
-#print(p)
+barplot((scree[1:10]*100), main="Scree Plot", xlab="Principal Component", ylab="Percent Variation")
 ```
 
     We can see that the majority (~65%) of the variance across our samples is explained by the first three principal components, giving us some additional confidence regarding the quality of our data.

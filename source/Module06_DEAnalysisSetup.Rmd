@@ -181,7 +181,7 @@ Since calculating variance is key to the statistical approach used for DESeq2, i
 
 > ## Exercise
 >
-> - Post a question that that was NOT addressed but that you hope we will address in the later modules **OR**
+> - Post a question that was NOT addressed but that you hope we will address in the later modules **OR**
 > - Add a thumbs up to your favorite comment(s) to upvote it
 
 ----
@@ -227,7 +227,7 @@ count_table = read.table("../data/R_data/gene_expected_count.txt", header = TRUE
 ```
 
 ```{r DataTable2, eval=FALSE}
-count_table = read.table("data/R_data/gene_expected_count.txt", header = TRUE, row.names = 1)
+count_table = read.table("data/gene_expected_count.txt", header = TRUE, row.names = 1)
 ```
 
 ```{r DataTableCheck, eval=TRUE}
@@ -253,7 +253,7 @@ Generally, for human and mouse experiments the recommendation is 30-40 million r
 How many reads were generated per sample in our data? We can use the `summarize_all` function from the dplyr package to determine the number of reads or "depth" per sample.
 
 ```{r SummarizeReads, eval=TRUE}
-count_table %>% summarize_all(funs(sum))
+count_table %>% summarize_all(sum)
 ```
 
 # Getting help

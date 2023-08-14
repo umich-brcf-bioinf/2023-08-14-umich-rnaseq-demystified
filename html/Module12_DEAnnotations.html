@@ -11,11 +11,11 @@
 
 <meta name="author" content="UM Bioinformatics Core" />
 
-<meta name="date" content="2023-08-13" />
+<meta name="date" content="2023-08-14" />
 
 <title>DE Annotations &amp; Downstream applications</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -462,7 +462,7 @@ div.tocify {
 <h1 class="title toc-ignore">DE Annotations &amp; Downstream
 applications</h1>
 <h4 class="author">UM Bioinformatics Core</h4>
-<h4 class="date">2023-08-13</h4>
+<h4 class="date">2023-08-14</h4>
 
 </div>
 
@@ -491,7 +491,7 @@ class="section level1 unlisted unnumbered">
 <h1 class="unlisted unnumbered">Differential Expression Workflow</h1>
 <p>Here we will generate summary figures for our results and annotate
 our DE tables.</p>
-<p><img src="images/wayfinder/slides/Slide12.png"
+<p><img src="images/wayfinder/wayfinder-DEVisualizations.png"
 style="width:75.0%" /></p>
 <hr />
 </div>
@@ -520,6 +520,10 @@ ENSEMBL IDs to gene symbols, enabling us to eventually add the gene
 symbol column we want.</p>
 <pre class="r"><code>library(&#39;biomaRt&#39;)
 ensembl = useEnsembl(dataset = &#39;mmusculus_gene_ensembl&#39;, biomart=&#39;ensembl&#39;, mirror = &quot;useast&quot;)</code></pre>
+<pre><code>Possible SSL connectivity problems detected.
+Please report this issue at https://github.com/grimbough/biomaRt/issues
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  SSL peer certificate or SSH remote key was not OK: [uswest.ensembl.org] SSL certificate problem: certificate has expired</code></pre>
 <p><strong>Note</strong> <em>- this process takes some time and will
 take up a larger amount of working memory so proceed with caution if you
 try to run these commands on a laptop with less than 4G of
@@ -542,8 +546,14 @@ for each gene.</p>
 <pre class="r"><code>id_mapping = getBM(attributes=c(&#39;ensembl_gene_id&#39;, &#39;external_gene_name&#39;),
       filters = &#39;ensembl_gene_id&#39;,
       values = row.names(assay(dds_fitted)),
-      mart = ensembl)
-# will take some time for query
+      mart = ensembl)</code></pre>
+<pre><code>
+Batch submitting query [=============&gt;-------------------------------------------] 25% eta: 5s
+Batch
+submitting query [===========================&gt;-----------------------------] 50% eta: 3s
+Batch submitting
+query [==========================================&gt;--------------] 75% eta: 2s</code></pre>
+<pre class="r"><code># will take some time for query
 
 # Preview the result
 head(id_mapping)</code></pre>
@@ -579,22 +589,14 @@ Annotation Resources vignette</a>.</p>
 <pre><code>log2 fold change (MLE): condition deficient vs control 
 Wald test p-value: condition deficient vs control 
 DataFrame with 6 rows and 7 columns
-                      baseMean log2FoldChange     lfcSE      stat
-                     &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-ENSMUSG00000000001  1489.83039       0.297760  0.210310  1.415815
-ENSMUSG00000000028  1748.93544       0.226421  0.176795  1.280695
-ENSMUSG00000000031  2151.87715       0.457635  0.764579  0.598545
-ENSMUSG00000000037    24.91672       0.579130  0.561259  1.031840
-ENSMUSG00000000049     7.78377      -0.899483  1.553063 -0.579167
-ENSMUSG00000000056 19653.54030      -0.174048  0.203529 -0.855151
-                      pvalue      padj     call
-                   &lt;numeric&gt; &lt;numeric&gt; &lt;factor&gt;
-ENSMUSG00000000001  0.156830  0.868573       NS
-ENSMUSG00000000028  0.200301  0.902900       NS
-ENSMUSG00000000031  0.549476  0.995391       NS
-ENSMUSG00000000037  0.302147  0.950613       NS
-ENSMUSG00000000049  0.562476  0.998043       NS
-ENSMUSG00000000056  0.392468  0.982479       NS</code></pre>
+                      baseMean log2FoldChange     lfcSE      stat    pvalue      padj     call
+                     &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;factor&gt;
+ENSMUSG00000000001  1489.83039       0.297760  0.210310  1.415815  0.156830  0.868573       NS
+ENSMUSG00000000028  1748.93544       0.226421  0.176795  1.280695  0.200301  0.902900       NS
+ENSMUSG00000000031  2151.87715       0.457635  0.764579  0.598545  0.549476  0.995391       NS
+ENSMUSG00000000037    24.91672       0.579130  0.561259  1.031840  0.302147  0.950613       NS
+ENSMUSG00000000049     7.78377      -0.899483  1.553063 -0.579167  0.562476  0.998043       NS
+ENSMUSG00000000056 19653.54030      -0.174048  0.203529 -0.855151  0.392468  0.982479       NS</code></pre>
 <p>We want to match the <code>id</code> column of
 <code>results_deficient_vs_control</code> to the
 <code>ensembl_gene_id</code> column of <code>id_mapping</code>, and once
@@ -609,16 +611,14 @@ columns <code>ensembl_gene_id</code> and
     left_join(id_mapping, by = c(&#39;id&#39; = &#39;ensembl_gene_id&#39;))
 head(results_deficient_vs_control_annotated)</code></pre>
 <pre><code># A tibble: 6 × 9
-  id          baseM…¹ log2F…² lfcSE   stat pvalue  padj call  exter…³
-  &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt;  
-1 ENSMUSG000…  1.49e3   0.298 0.210  1.42   0.157 0.869 NS    Gnai3  
-2 ENSMUSG000…  1.75e3   0.226 0.177  1.28   0.200 0.903 NS    Cdc45  
-3 ENSMUSG000…  2.15e3   0.458 0.765  0.599  0.549 0.995 NS    H19    
-4 ENSMUSG000…  2.49e1   0.579 0.561  1.03   0.302 0.951 NS    Scml2  
-5 ENSMUSG000…  7.78e0  -0.899 1.55  -0.579  0.562 0.998 NS    Apoh   
-6 ENSMUSG000…  1.97e4  -0.174 0.204 -0.855  0.392 0.982 NS    Narf   
-# … with abbreviated variable names ¹​baseMean, ²​log2FoldChange,
-#   ³​external_gene_name</code></pre>
+  id                 baseMean log2FoldChange lfcSE   stat pvalue  padj call  external_gene_name
+  &lt;chr&gt;                 &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;chr&gt;             
+1 ENSMUSG00000000001  1490.            0.298 0.210  1.42   0.157 0.869 NS    Gnai3             
+2 ENSMUSG00000000028  1749.            0.226 0.177  1.28   0.200 0.903 NS    Cdc45             
+3 ENSMUSG00000000031  2152.            0.458 0.765  0.599  0.549 0.995 NS    H19               
+4 ENSMUSG00000000037    24.9           0.579 0.561  1.03   0.302 0.951 NS    Scml2             
+5 ENSMUSG00000000049     7.78         -0.899 1.55  -0.579  0.562 0.998 NS    Apoh              
+6 ENSMUSG00000000056 19654.           -0.174 0.204 -0.855  0.392 0.982 NS    Narf              </code></pre>
 <p>We can use some of the <code>tidyverse</code> functions we’ve
 encountered previously to rename the <code>external_gene_name</code>
 column to <code>symbol</code> and to move it into the second column
@@ -631,20 +631,19 @@ in a moment.</p>
     dplyr::select(id, symbol, everything())
 results_deficient_vs_control_annotated</code></pre>
 <pre><code># A tibble: 16,249 × 9
-   id          symbol baseM…¹ log2F…² lfcSE   stat pvalue  padj call 
-   &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;
- 1 ENSMUSG000… Gnai3   1.49e3   0.298 0.210  1.42   0.157 0.869 NS   
- 2 ENSMUSG000… Cdc45   1.75e3   0.226 0.177  1.28   0.200 0.903 NS   
- 3 ENSMUSG000… H19     2.15e3   0.458 0.765  0.599  0.549 0.995 NS   
- 4 ENSMUSG000… Scml2   2.49e1   0.579 0.561  1.03   0.302 0.951 NS   
- 5 ENSMUSG000… Apoh    7.78e0  -0.899 1.55  -0.579  0.562 0.998 NS   
- 6 ENSMUSG000… Narf    1.97e4  -0.174 0.204 -0.855  0.392 0.982 NS   
- 7 ENSMUSG000… Klf6    9.51e2  -0.145 0.222 -0.652  0.515 0.992 NS   
- 8 ENSMUSG000… Scmh1   7.27e2   0.265 0.275  0.964  0.335 0.966 NS   
- 9 ENSMUSG000… Cox5a   1.43e3  -0.272 0.212 -1.28   0.199 0.903 NS   
-10 ENSMUSG000… Tbx2    1.52e1   0.542 0.687  0.788  0.430 0.985 NS   
-# … with 16,239 more rows, and abbreviated variable names ¹​baseMean,
-#   ²​log2FoldChange</code></pre>
+   id                 symbol baseMean log2FoldChange lfcSE   stat pvalue  padj call 
+   &lt;chr&gt;              &lt;chr&gt;     &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;
+ 1 ENSMUSG00000000001 Gnai3   1490.            0.298 0.210  1.42   0.157 0.869 NS   
+ 2 ENSMUSG00000000028 Cdc45   1749.            0.226 0.177  1.28   0.200 0.903 NS   
+ 3 ENSMUSG00000000031 H19     2152.            0.458 0.765  0.599  0.549 0.995 NS   
+ 4 ENSMUSG00000000037 Scml2     24.9           0.579 0.561  1.03   0.302 0.951 NS   
+ 5 ENSMUSG00000000049 Apoh       7.78         -0.899 1.55  -0.579  0.562 0.998 NS   
+ 6 ENSMUSG00000000056 Narf   19654.           -0.174 0.204 -0.855  0.392 0.982 NS   
+ 7 ENSMUSG00000000078 Klf6     951.           -0.145 0.222 -0.652  0.515 0.992 NS   
+ 8 ENSMUSG00000000085 Scmh1    727.            0.265 0.275  0.964  0.335 0.966 NS   
+ 9 ENSMUSG00000000088 Cox5a   1427.           -0.272 0.212 -1.28   0.199 0.903 NS   
+10 ENSMUSG00000000093 Tbx2      15.2           0.542 0.687  0.788  0.430 0.985 NS   
+# ℹ 16,239 more rows</code></pre>
 <p>And now we have our differential expression results annotated with
 gene symbols, which can help in the interpretation of the results, and
 can be used in downstream analysis such as functional analysis. Although
@@ -774,9 +773,9 @@ class="uri">http://dputhier.github.io/jgb71e-polytech-bioinfo-app/practical/rna-
 <div id="session-info" class="section level1">
 <h1>Session Info</h1>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.0 (2022-04-22)
+<pre><code>R version 4.2.2 (2022-10-31)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS 13.2.1
+Running under: macOS Ventura 13.5
 
 Matrix products: default
 LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
@@ -785,73 +784,40 @@ locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
-[1] stats4    stats     graphics  grDevices utils     datasets 
-[7] methods   base     
+[1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] forcats_0.5.2               stringr_1.5.0              
- [3] purrr_1.0.1                 readr_2.1.3                
- [5] tibble_3.1.8                tidyverse_1.3.2            
- [7] biomaRt_2.52.0              data.table_1.14.6          
- [9] dplyr_1.0.10                knitr_1.41                 
-[11] rmarkdown_2.18              RColorBrewer_1.1-3         
-[13] pheatmap_1.0.12             ggrepel_0.9.2              
-[15] tidyr_1.3.0                 ggplot2_3.4.0              
-[17] DESeq2_1.36.0               SummarizedExperiment_1.26.1
-[19] Biobase_2.56.0              MatrixGenerics_1.8.1       
-[21] matrixStats_0.63.0          GenomicRanges_1.48.0       
-[23] GenomeInfoDb_1.32.4         IRanges_2.30.1             
-[25] S4Vectors_0.34.0            BiocGenerics_0.42.0        
+ [1] biomaRt_2.54.1              data.table_1.14.8           RColorBrewer_1.1-3         
+ [4] pheatmap_1.0.12             ggrepel_0.9.3               DESeq2_1.38.3              
+ [7] SummarizedExperiment_1.28.0 Biobase_2.58.0              MatrixGenerics_1.10.0      
+[10] matrixStats_1.0.0           GenomicRanges_1.50.2        GenomeInfoDb_1.34.9        
+[13] IRanges_2.32.0              S4Vectors_0.36.2            BiocGenerics_0.44.0        
+[16] knitr_1.43                  rmarkdown_2.23              lubridate_1.9.2            
+[19] forcats_1.0.0               stringr_1.5.0               dplyr_1.1.2                
+[22] purrr_1.0.1                 readr_2.1.4                 tidyr_1.3.0                
+[25] tibble_3.2.1                ggplot2_3.4.2               tidyverse_2.0.0            
 
 loaded via a namespace (and not attached):
- [1] googledrive_2.0.0      colorspace_2.0-3      
- [3] ellipsis_0.3.2         XVector_0.36.0        
- [5] fs_1.5.2               rstudioapi_0.14       
- [7] farver_2.1.1           bit64_4.0.5           
- [9] AnnotationDbi_1.58.0   fansi_1.0.3           
-[11] lubridate_1.9.0        xml2_1.3.3            
-[13] codetools_0.2-18       splines_4.2.0         
-[15] cachem_1.0.6           geneplotter_1.74.0    
-[17] jsonlite_1.8.3         broom_1.0.1           
-[19] annotate_1.74.0        dbplyr_2.2.1          
-[21] png_0.1-8              compiler_4.2.0        
-[23] httr_1.4.4             backports_1.4.1       
-[25] assertthat_0.2.1       Matrix_1.5-3          
-[27] fastmap_1.1.0          gargle_1.2.1          
-[29] cli_3.4.1              htmltools_0.5.3       
-[31] prettyunits_1.1.1      tools_4.2.0           
-[33] gtable_0.3.1           glue_1.6.2            
-[35] GenomeInfoDbData_1.2.8 rappdirs_0.3.3        
-[37] Rcpp_1.0.9             cellranger_1.1.0      
-[39] jquerylib_0.1.4        vctrs_0.5.2           
-[41] Biostrings_2.64.1      xfun_0.35             
-[43] rvest_1.0.3            timechange_0.1.1      
-[45] lifecycle_1.0.3        XML_3.99-0.13         
-[47] googlesheets4_1.0.1    zlibbioc_1.42.0       
-[49] scales_1.2.1           vroom_1.6.0           
-[51] hms_1.1.2              parallel_4.2.0        
-[53] yaml_2.3.6             curl_4.3.3            
-[55] memoise_2.0.1          sass_0.4.4            
-[57] stringi_1.7.8          RSQLite_2.2.19        
-[59] highr_0.9              genefilter_1.78.0     
-[61] filelock_1.0.2         BiocParallel_1.30.4   
-[63] rlang_1.0.6            pkgconfig_2.0.3       
-[65] bitops_1.0-7           evaluate_0.18         
-[67] lattice_0.20-45        labeling_0.4.2        
-[69] bit_4.0.5              tidyselect_1.2.0      
-[71] magrittr_2.0.3         R6_2.5.1              
-[73] generics_0.1.3         DelayedArray_0.22.0   
-[75] DBI_1.1.3              pillar_1.8.1          
-[77] haven_2.5.1            withr_2.5.0           
-[79] survival_3.4-0         KEGGREST_1.36.3       
-[81] RCurl_1.98-1.9         modelr_0.1.10         
-[83] crayon_1.5.2           utf8_1.2.2            
-[85] BiocFileCache_2.4.0    tzdb_0.3.0            
-[87] progress_1.2.2         locfit_1.5-9.6        
-[89] grid_4.2.0             readxl_1.4.1          
-[91] blob_1.2.3             reprex_2.0.2          
-[93] digest_0.6.30          xtable_1.8-4          
-[95] munsell_0.5.0          bslib_0.4.1           </code></pre>
+ [1] bitops_1.0-7           bit64_4.0.5            filelock_1.0.2         progress_1.2.2        
+ [5] httr_1.4.6             tools_4.2.2            bslib_0.5.0            utf8_1.2.3            
+ [9] R6_2.5.1               DBI_1.1.3              colorspace_2.1-0       withr_2.5.0           
+[13] prettyunits_1.1.1      tidyselect_1.2.0       curl_5.0.1             bit_4.0.5             
+[17] compiler_4.2.2         textshaping_0.3.6      cli_3.6.1              xml2_1.3.5            
+[21] DelayedArray_0.24.0    labeling_0.4.2         sass_0.4.6             scales_1.2.1          
+[25] rappdirs_0.3.3         systemfonts_1.0.4      digest_0.6.33          XVector_0.38.0        
+[29] pkgconfig_2.0.3        htmltools_0.5.5        dbplyr_2.3.3           highr_0.10            
+[33] fastmap_1.1.1          rlang_1.1.1            rstudioapi_0.15.0      RSQLite_2.3.1         
+[37] jquerylib_0.1.4        farver_2.1.1           generics_0.1.3         jsonlite_1.8.7        
+[41] BiocParallel_1.32.6    RCurl_1.98-1.12        magrittr_2.0.3         GenomeInfoDbData_1.2.9
+[45] Matrix_1.5-4.1         Rcpp_1.0.11            munsell_0.5.0          fansi_1.0.4           
+[49] lifecycle_1.0.3        stringi_1.7.12         yaml_2.3.7             zlibbioc_1.44.0       
+[53] BiocFileCache_2.6.1    grid_4.2.2             blob_1.2.4             parallel_4.2.2        
+[57] crayon_1.5.2           lattice_0.21-8         Biostrings_2.66.0      annotate_1.76.0       
+[61] hms_1.1.3              KEGGREST_1.38.0        locfit_1.5-9.8         pillar_1.9.0          
+[65] geneplotter_1.76.0     codetools_0.2-19       XML_3.99-0.14          glue_1.6.2            
+[69] evaluate_0.21          vctrs_0.6.3            png_0.1-8              tzdb_0.4.0            
+[73] gtable_0.3.3           cachem_1.0.8           xfun_0.39              xtable_1.8-4          
+[77] ragg_1.2.5             AnnotationDbi_1.60.2   memoise_2.0.1          timechange_0.2.0      </code></pre>
 <hr />
 <p>These materials have been adapted and extended from materials listed
 above. These are open access materials distributed under the terms of

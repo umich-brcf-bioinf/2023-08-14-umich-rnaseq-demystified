@@ -88,7 +88,7 @@ Now, consider needing to make this decision for 20,000 genes. Even if all the ge
 
 **We need a formal, reproducible, way to make this decision!**
 
-Thankfully statistics provides the formality we want, but for any statistical test we need to clearly state what we are testing.  When testing for differential expression we assume that for any for any particular gene, there is no difference in expression between conditions. Statisticians would call this the "null hypothesis".
+Thankfully statistics provides the formality we want, but for any statistical test we need to clearly state what we are testing.  When testing for differential expression we assume that for any particular gene, there is no difference in expression between conditions. Statisticians would call this the **"null hypothesis"**.
 
 For each gene, DESeq2 computes a "Wald statistic" which is a single number encapsulating the difference in the means and the spread of the groups. However, this number alone doesn't allow us to determine if a gene is differentially expressed. We need a **second** number to give us an idea of how extreme that statistic is among the distribution of possible statistics, which is the **"p-value"**. The **"p-value"** along with choosing a threshold will inform us if we can **reject the null hypothesis** and classify a gene as differentially expressed.
 
