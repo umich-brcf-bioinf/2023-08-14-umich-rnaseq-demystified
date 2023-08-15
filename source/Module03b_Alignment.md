@@ -58,7 +58,7 @@ We should note that the default parameters for STAR are optimized for **mammalia
 
 <center>
 
-![Splice-aware alignmentt](images/splice_aware.png)
+![Splice-aware alignment](images/splice_aware.png)
 
 Credit: https://raw.githubusercontent.com/hbctraining/Intro-to-rnaseq-hpc-O2/master/lectures/Sequence_alignment.pdf
 
